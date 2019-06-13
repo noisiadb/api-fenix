@@ -1,0 +1,17 @@
+{
+  "name": "proyecto_fenix",
+  "version": "1.0.0",
+  "description": "API Rest del proyecto_fenix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alvaro, Jaime, Sergio, Ruperto, Alejandro, Soto, Felix",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.5.15"
+  }
+}
