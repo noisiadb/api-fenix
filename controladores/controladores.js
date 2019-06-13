@@ -21,7 +21,7 @@ function validar(req, res) {
                     usuario: usuario
                 })
             } else {
-                res.tstaus(200).send({
+                res.status(200).send({
                     encontrado: false
                 })
             }
