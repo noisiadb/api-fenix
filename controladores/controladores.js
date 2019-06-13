@@ -1,4 +1,4 @@
-var Usuario = require("../models/usuarios.js")
+var Usuario = require("../models/usuarios")
 
 /* Funcion para validar el login */
 function validar(req, res) {
