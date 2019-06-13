@@ -17,5 +17,4 @@ app.use(cors());
 // rutas
 app.use("/", controls_router)
 
-
 module.exports = app;
