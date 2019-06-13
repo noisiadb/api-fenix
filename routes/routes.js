@@ -3,6 +3,6 @@ var controladores = require('../controladores/controladores.js')
 
 var api = express.Router()
 
-api.post("/validar", UsersController.validar)
+api.post("/validar", controladores.validar)
 
 module.exports = api;
