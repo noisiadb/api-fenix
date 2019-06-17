@@ -58,7 +58,6 @@ function update(req, res) {
 
     var idDispositivo = req.body.dispositivoAleatorio
     var estadoDispositivoNuevo = req.body.estadoDispositivoAleatorio
-    aleatorio = numeroAleatorio(1, 18)
 
     Zona.updateOne({ "Dispositivos.idDispositivo": idDispositivo },
         {
@@ -93,6 +92,3 @@ module.exports = {
     update
 }
 
-function numeroAleatorio(min, max) {
-    return Math.round(Math.random() * (max - min) + min);
-}
