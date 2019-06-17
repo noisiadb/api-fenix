@@ -5,6 +5,7 @@ var api = express.Router()
 
 /* https://proyectofenix.herokuapp.com/validar */
 api.post("/validar", controladores.validar)
+
 /* https://proyectofenix.herokuapp.com/mapa */
 api.get("/mapa", controladores.mapa)
 
