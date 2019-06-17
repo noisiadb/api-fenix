@@ -54,8 +54,45 @@ function mapa(req, res) {
     })
 }
 
+function update(req, res) {
+
+    var idDispositivo = req.body.dispositivoAleatorio
+    var estadoDispositivoNuevo = req.body.estadoDispositivoAleatorio
+    aleatorio = numeroAleatorio(1, 18)
+
+    Zona.update({ "Dispositivos.idDispositivo": idDispositivo },
+        {
+            $set: {
+                "Dispositivos.$.estadoDispositivo": estadoDispositivoNuevo
+            }
+        }, { new: true }).exec((err, zonas) => {
+            if (err) {
+                res.status(500).send({
+                    message: "Error en el servidor",
+                    error: err
+                })
+            } else {
+                if (zonas != 0) {
+
+                    res.status(200).send({
+                        encontrado: true,
+                        zonas: zonas
+                    })
+                } else {
+                    res.status(200).send({
+                        encontrado: false
+                    })
+                }
+            }
+        })
+}
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
     validar,
     mapa,
+    update
+}
+
+function numeroAleatorio(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
 }
