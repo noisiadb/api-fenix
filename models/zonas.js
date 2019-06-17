@@ -23,7 +23,7 @@ var zonasSchema = Schema({
     ],
     Incendios: [
         {
-            idLugarIncendio: Number,
+            idLugarIncendio: String,
             coordenadaXIncendio: Number,
             coordenadaYIncendio: Number
         }
