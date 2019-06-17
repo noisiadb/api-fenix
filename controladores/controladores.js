@@ -60,7 +60,7 @@ function update(req, res) {
     var estadoDispositivoNuevo = req.body.estadoDispositivoAleatorio
     aleatorio = numeroAleatorio(1, 18)
 
-    Zona.update({ "Dispositivos.idDispositivo": idDispositivo },
+    Zona.updateOne({ "Dispositivos.idDispositivo": idDispositivo },
         {
             $set: {
                 "Dispositivos.$.estadoDispositivo": estadoDispositivoNuevo
