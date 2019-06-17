@@ -1,4 +1,5 @@
 var Usuario = require("../models/usuarios")
+var Zona = require("../models/zonas")
 
 /* Funcion para validar el login */
 function validar(req, res) {
@@ -29,7 +30,31 @@ function validar(req, res) {
     })
 }
 
+function mapa(req, res) {
+
+    Zona.find({}).exec((err, zonas) => {
+        if (err) {
+            res.status(500).send({
+                message: "Error en el servidor",
+                error: err
+            })
+        } else {
+            if (zonas != 0) {
+                res.status(200).send({
+                    encontrado: true,
+                    zonas: zonas
+                })
+            } else {
+                res.status(200).send({
+                    encontrado: false
+                })
+            }
+        }
+    })
+}
+
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
-    validar
+    validar,
+    mapa
 }
