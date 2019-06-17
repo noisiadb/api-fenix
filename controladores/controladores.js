@@ -30,6 +30,7 @@ function validar(req, res) {
     })
 }
 
+// Función para mostrar el mapa
 function mapa(req, res) {
 
     Zona.find({}).exec((err, zonas) => {
@@ -56,5 +57,5 @@ function mapa(req, res) {
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
     validar,
-    mapa
+    mapa,
 }

@@ -10,7 +10,8 @@ var zonasSchema = Schema({
         {
             idDispositivo: Number,
             coordenadaXDispositivo: Number,
-            coordenadaYDispositivo: Number
+            coordenadaYDispositivo: Number,
+            estadoDispositivo: Number
         }
     ],
     LugaresDeAbastecimiento: [
