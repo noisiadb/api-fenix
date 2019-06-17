@@ -3,6 +3,7 @@ var controladores = require('../controladores/controladores.js')
 
 var api = express.Router()
 
+/* https://proyectofenix.herokuapp.com/validar */
 api.post("/validar", controladores.validar)
 
 module.exports = api;
