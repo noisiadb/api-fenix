@@ -4,6 +4,8 @@ var Zona = require("../models/zonas")
 /* Funcion para validar el login */
 function validar(req, res) {
 
+    console.log(req);
+
     var params = req.body;
 
     var paramsUser = params.user;
