@@ -98,28 +98,38 @@ function validar2(req, res) {
 
     var params = req.params;
 
-    var paramsUser = params.user;
-    var paramsPass = params.pass;
+    if (params.user && params.pass) {
 
-    Usuario.find({ "user": paramsUser, "pass": paramsPass }).exec((err, usuario) => {
-        if (err) {
-            res.status(500).send({
-                message: "Error en el servidor",
-                error: err
+        var paramsUser = params.user;
+        var paramsPass = params.pass;
+
+        Usuario.find({ "user": paramsUser, "pass": paramsPass })
+            .exec((err, usuario) => {
+                if (err) {
+                    res.status(500).send({
+                        message: "Error en el servidor",
+                        error: err
+                    })
+                } else {
+                    if (usuario != 0) {
+                        res.status(200).send({
+                            encontrado: true,
+                            usuario: usuario
+                        })
+                    } else {
+                        res.status(200).send({
+                            encontrado: false
+                        })
+                    }
+                }
             })
-        } else {
-            if (usuario != 0) {
-                res.status(200).send({
-                    encontrado: true,
-                    usuario: usuario
-                })
-            } else {
-                res.status(200).send({
-                    encontrado: false
-                })
-            }
-        }
-    })
+
+    } else {
+        res.status(200).send({
+            encontrado: false,
+            Por_que: "Faltan parametros en la url o esta mal escrita :("
+        })
+    }
 }
 
 // Función para cargar los usuarios que hay
@@ -145,6 +155,49 @@ function cargarUsuarios(req, res) {
         }
     })
 }
+
+/* Funcion para crear un usuario nuevo */
+function crearUsuario(req, res) {
+    var usuario = new Usuario();
+
+    var params = req.body;
+
+    if (params.user && params.pass) {
+        usuario.user = params.user
+        usuario.pass = params.pass
+        usuario.admin = params.admin
+
+        usuario.save((err, userStored) => {
+            if (err) {
+                res.status(500).send({
+                    message: "Error en el servidor"
+                })
+            } else {
+                if (userStored) {
+                    res.status(200).send({
+                        insertado: true,
+                        usuario: userStored
+                    })
+                } else {
+                    res.status(200).send({
+                        insertado: false,
+                        Por_que: "Motivos extraños, fijate en " +
+                            "los caracteres tal vez",
+                        message: "No se ha guardado el usuario"
+                    })
+                }
+            }
+        })
+    } else {
+        res.status(200).send({
+            insertado: false,
+            Por_que: "faltan parametros por añadir",
+            message: "El nombre de usuario, la contraseña y el" +
+                "tipo de privilegios son obligatorios"
+        })
+    }
+}
+
 
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
