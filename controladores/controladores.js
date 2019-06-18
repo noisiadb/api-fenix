@@ -163,6 +163,7 @@ function crearUsuario(req, res) {
     var params = req.body;
 
     if (params.user && params.pass) {
+
         usuario.user = params.user
         usuario.pass = params.pass
         usuario.admin = params.admin
@@ -205,6 +206,7 @@ module.exports = {
     mapa,
     update,
     validar2,
-    cargarUsuarios
+    cargarUsuarios,
+    crearUsuario
 }
 
