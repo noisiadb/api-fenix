@@ -33,7 +33,7 @@ function validar(req, res) {
     })
 }
 
-// Función para mostrar el mapa
+// Función para cargar el mapa
 function mapa(req, res) {
 
     Zona.find({}).exec((err, zonas) => {
@@ -57,50 +57,50 @@ function mapa(req, res) {
     })
 }
 
+/* Funcion para hacer update de un dispositivo y su estado */
 function update(req, res) {
-    
+
     var idDispositivo = req.body.dispositivoAleatorio
     var estadoDispositivoNuevo = req.body.estadoDispositivoAleatorio
-    
+
     Zona.updateOne({ "Dispositivos.idDispositivo": idDispositivo },
-    {
-        $set: {
-            "Dispositivos.$.estadoDispositivo": estadoDispositivoNuevo
-        }
-    }, { new: true }).exec((err, zonas) => {
-        if (err) {
-            res.status(500).send({
-                message: "Error en el servidor",
-                error: err
-            })
-        } else {
-            if (zonas != 0) {
-                
-                res.status(200).send({
-                    encontrado: true,
-                    zonas: zonas
+        {
+            $set: {
+                "Dispositivos.$.estadoDispositivo": estadoDispositivoNuevo
+            }
+        }, { new: true }).exec((err, zonas) => {
+            if (err) {
+                res.status(500).send({
+                    message: "Error en el servidor",
+                    error: err
                 })
             } else {
-                res.status(200).send({
-                    encontrado: false
-                })
+                if (zonas != 0) {
+
+                    res.status(200).send({
+                        encontrado: true,
+                        zonas: zonas
+                    })
+                } else {
+                    res.status(200).send({
+                        encontrado: false
+                    })
+                }
             }
-        }
-    })
+        })
 }
 
+/* Funcion para validar el login a traves de GET, version movil */
 function validar2(req, res) {
-    
+
     console.log("req.params");
     console.log(req.params);
-    console.log("req.params.user");
-    console.log(req.params.user);
-    
+
     var params = req.params;
-    
+
     var paramsUser = params.user;
     var paramsPass = params.pass;
-    
+
     Usuario.find({ "user": paramsUser, "pass": paramsPass }).exec((err, usuario) => {
         if (err) {
             res.status(500).send({

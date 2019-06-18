@@ -15,7 +15,7 @@ api.get("/mapa", controladores.mapa)
 /* https://proyectofenix.herokuapp.com/update */
 api.put("/update", controladores.update)
 
-/* https://proyectofenix.herokuapp.com/update */
+/* https://proyectofenix.herokuapp.com/usuarios */
 api.get("/usuarios", controladores.cargarUsuarios)
 
 module.exports = api;
