@@ -5,9 +5,9 @@ var Zona = require("../models/zonas")
 function validar(req, res) {
 
     console.log("req.body");
-    console.log(req.body);
+    console.log(req.body.user);
     console.log("req.params");
-    console.log(req.params);
+    console.log(req.params.user);
 
     var params = req.body;
 
