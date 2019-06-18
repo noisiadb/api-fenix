@@ -6,6 +6,9 @@ var api = express.Router()
 /* https://proyectofenix.herokuapp.com/validar */
 api.post("/validar", controladores.validar)
 
+/* https://proyectofenix.herokuapp.com/validar2 */
+api.get("/validar2/:user/:pass", controladores.validar2)
+
 /* https://proyectofenix.herokuapp.com/mapa */
 api.get("/mapa", controladores.mapa)
 

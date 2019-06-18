@@ -94,10 +94,49 @@ function update(req, res) {
             }
         })
 }
+
+function validar2(req, res) {
+
+    console.log("req.body");
+    console.log(req.body);
+    console.log("req.body.user");
+    console.log(req.body.user);
+    console.log("req.params");
+    console.log(req.params);
+    console.log("req.params.user");
+    console.log(req.params.user);
+
+    var params = req.params;
+
+    var paramsUser = params.user;
+    var paramsPass = params.pass;
+
+    Usuario.find({ "user": paramsUser, "pass": paramsPass }).exec((err, usuario) => {
+        if (err) {
+            res.status(500).send({
+                message: "Error en el servidor",
+                error: err
+            })
+        } else {
+            if (usuario != 0) {
+                res.status(200).send({
+                    encontrado: true,
+                    usuario: usuario
+                })
+            } else {
+                res.status(200).send({
+                    encontrado: false
+                })
+            }
+        }
+    })
+}
+
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
     validar,
     mapa,
-    update
+    update,
+    validar2
 }
 
