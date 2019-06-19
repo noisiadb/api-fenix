@@ -21,4 +21,7 @@ api.get("/usuarios", controladores.cargarUsuarios)
 /* https://proyectofenix.herokuapp.com/usuarios/crear */
 api.post("/usuarios/crear", controladores.crearUsuario)
 
+/* https://proyectofenix.herokuapp.com/usuarios/delete/:idUser */
+api.delete("/usuarios/delete/:idUser", controladores.deleteUsuario)
+
 module.exports = api;

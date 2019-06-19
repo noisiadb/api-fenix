@@ -199,6 +199,46 @@ function crearUsuario(req, res) {
     }
 }
 
+/* Funcion para borrar un usuario por _id */
+function deleteUsuario(req, res) {
+
+    if (req.params.idUser) {
+
+        var id = req.params.idUser
+        var mongoose = require("mongoose")
+
+        /* "_id": new mongoose.mongo.ObjectId(idUser) */
+        Usuario.findByIdAndRemove({ "_id": new mongoose.mongo.ObjectId(idUser) })
+            .exec(function (err, usuarioRemoved) {
+                if (err) {
+                    res.status(500).send({
+                        borrado: false,
+                        message: "Error en el servidor",
+                        messageError: err,
+                        id: id
+                    })
+                } else {
+                    if (usuarioRemoved != 0) {
+                        res.status(200).send({
+                            borrado: true,
+                            usuarioRemoved: usuarioRemoved
+                        })
+                    } else {
+                        res.status(200).send({
+                            borrado: false,
+                            message: "La matricula no existe"
+                        })
+                    }
+                }
+            })
+    } else {
+        res.status(200).send({
+            borrado: false,
+            message: "Falta por especificar el id de la matricula"
+        })
+    }
+}
+
 
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
@@ -207,6 +247,7 @@ module.exports = {
     update,
     validar2,
     cargarUsuarios,
-    crearUsuario
+    crearUsuario,
+    deleteUsuario
 }
 
