@@ -254,6 +254,7 @@ function updateUsuario(req, res) {
         && paramsBody.pass && paramsBody.admin) {
 
         var id = paramsParam.idUser;
+        var mongoose = require("mongoose")
 
         Usuario.findOneAndUpdate({ "_id": new mongoose.mongo.ObjectId(id) },
             paramsBody, { new: true })
