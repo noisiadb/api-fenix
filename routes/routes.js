@@ -27,4 +27,8 @@ api.delete("/usuarios/delete/:idUser", controladores.deleteUsuario)
 /* https://proyectofenix.herokuapp.com/usuarios/update/:idUser */
 api.put("/usuarios/update/:idUser", controladores.updateUsuario)
 
+/* https://proyectofenix.herokuapp.com/zonas/crear */
+api.put("/zonas/crear", controladores.crearZona)
+
+
 module.exports = api;

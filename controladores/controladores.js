@@ -286,7 +286,48 @@ function updateUsuario(req, res) {
     }
 
 }
+/* Función para crear nuevas zonas */
+function crearZona(req, res) {
+    var zona = new zona();
 
+    var params = req.body;
+
+    if (params.nombreZona && params.coordenadaXZona && params.coordenadaYZona) {
+
+        zona.nombreZona = params.nombreZona
+        zona.coordenadaXZona = params.coordenadaXZona
+        zona.coordenadaYZona = params.coordenadaYZona
+
+        zona.save((err, zonaStored) => {
+            if (err) {
+                res.status(500).send({
+                    insertado: false,
+                    message: "Error en el servidor"
+                })
+            } else {
+                if (zonaStored) {
+                    res.status(200).send({
+                        insertado: true,
+                        zona: zonaStored
+                    })
+                } else {
+                    res.status(200).send({
+                        insertado: false,
+                        Por_que: "Motivos extraños, fijate en " +
+                            "los caracteres tal vez",
+                        message: "No se ha guardado la zona"
+                    })
+                }
+            }
+        })
+    } else {
+        res.status(200).send({
+            insertado: false,
+            Por_que: "faltan parametros por añadir",
+            message: "La zona no es correcta"
+        })
+    }
+}
 
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
@@ -297,6 +338,7 @@ module.exports = {
     cargarUsuarios,
     crearUsuario,
     deleteUsuario,
-    updateUsuario
+    updateUsuario,
+    crearZona
 }
 
