@@ -255,7 +255,7 @@ function updateUsuario(req, res) {
 
         var id = paramsParam.idUser;
 
-        Usuario.findByIdAndUpdate(id, paramsBody, { new: true })
+        Usuario.findOneAndUpdate(id, paramsBody, { new: true })
             .exec((err, usuario) => {
                 if (err) {
                     res.status(500).send({
