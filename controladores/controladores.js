@@ -208,7 +208,7 @@ function deleteUsuario(req, res) {
         var mongoose = require("mongoose")
 
         /* "_id": new mongoose.mongo.ObjectId(idUser) */
-        Usuario.findByIdAndRemove({ "_id": new mongoose.mongo.ObjectId(idUser) })
+        Usuario.findByIdAndRemove({ "_id": new mongoose.mongo.ObjectId(id) })
             .exec(function (err, usuarioRemoved) {
                 if (err) {
                     res.status(500).send({
