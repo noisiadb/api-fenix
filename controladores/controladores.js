@@ -244,7 +244,7 @@ function updateUsuario(req, res) {
 
     var paramsBody = req.body
     var paramsParam = req.params
-    
+
     console.log("paramsBody");
     console.log(paramsBody);
     console.log("paramsParam");
@@ -255,7 +255,8 @@ function updateUsuario(req, res) {
 
         var id = paramsParam.idUser;
 
-        Usuario.findOneAndUpdate(id, paramsBody, { new: true })
+        Usuario.findOneAndUpdate({ "_id": new mongoose.mongo.ObjectId(id) },
+            paramsBody, { new: true })
             .exec((err, usuario) => {
                 if (err) {
                     res.status(500).send({
