@@ -18,4 +18,7 @@ api.put("/update", controladores.update)
 /* https://proyectofenix.herokuapp.com/usuarios */
 api.get("/usuarios", controladores.cargarUsuarios)
 
+/* https://proyectofenix.herokuapp.com/usuarios/crear */
+api.post("/usuarios/crear", controladores.crearUsuario)
+
 module.exports = api;
