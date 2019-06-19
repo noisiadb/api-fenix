@@ -264,7 +264,7 @@ function updateUsuario(req, res) {
                         error: err
                     })
                 } else {
-                    if (zonas != 0) {
+                    if (usuario != 0) {
                         res.status(200).send({
                             actualizado: true,
                             usuario: usuario
