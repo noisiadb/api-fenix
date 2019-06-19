@@ -253,7 +253,7 @@ function updateUsuario(req, res) {
     if (paramsParam.idUser && paramsBody.user
         && paramsBody.pass && paramsBody.admin) {
 
-        var id = paramsParam._id;
+        var id = paramsParam.idUser;
 
         Usuario.findByIdAndUpdate(id, paramsBody, { new: true })
             .exec((err, usuario) => {
@@ -264,7 +264,7 @@ function updateUsuario(req, res) {
                         error: err
                     })
                 } else {
-                    if (usuario != 0) {
+                    if (usuario) {
                         res.status(200).send({
                             actualizado: true,
                             usuario: usuario
