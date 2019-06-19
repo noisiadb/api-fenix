@@ -244,6 +244,11 @@ function updateUsuario(req, res) {
 
     var paramsBody = req.body
     var paramsParam = req.params
+    
+    console.log("paramsBody");
+    console.log(paramsBody);
+    console.log("paramsParam");
+    console.log(paramsParam);
 
     if (paramsParam.idUser && paramsBody.user
         && paramsBody.pass && paramsBody.admin) {
