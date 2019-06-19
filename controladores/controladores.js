@@ -239,6 +239,47 @@ function deleteUsuario(req, res) {
     }
 }
 
+/* Funcion parea actualizar un usuario */
+function updateUsuario(req, res) {
+
+    var paramsBody = req.body
+    var paramsParam = req.params
+
+    if (paramsParam._id && paramsBody.user
+        && paramsBody.pass && paramsBody.admin) {
+
+        var id = paramsParam._id;
+
+        Usuario.findByIdAndUpdate(id, paramsBody, { new: true })
+            .exec((err, usuario) => {
+                if (err) {
+                    res.status(500).send({
+                        actualizado: false,
+                        message: "Error en el servidor",
+                        error: err
+                    })
+                } else {
+                    if (zonas != 0) {
+                        res.status(200).send({
+                            actualizado: true,
+                            usuario: usuario
+                        })
+                    } else {
+                        res.status(200).send({
+                            actualizado: false
+                        })
+                    }
+                }
+            })
+    } else {
+        res.status(200).send({
+            actualizado: false,
+            message: "Faltan parametros por añadir"
+        })
+    }
+
+}
+
 
 /* Exportamos las funciones para poder usarlas en routes */
 module.exports = {
@@ -248,6 +289,7 @@ module.exports = {
     validar2,
     cargarUsuarios,
     crearUsuario,
-    deleteUsuario
+    deleteUsuario,
+    updateUsuario
 }
 
