@@ -245,7 +245,7 @@ function updateUsuario(req, res) {
     var paramsBody = req.body
     var paramsParam = req.params
 
-    if (paramsParam._id && paramsBody.user
+    if (paramsParam.idUser && paramsBody.user
         && paramsBody.pass && paramsBody.admin) {
 
         var id = paramsParam._id;
